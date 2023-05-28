@@ -1,0 +1,74 @@
+[
+  {
+    "date": "2023-05-19T15:00",
+    "location": "Miercurea-Ciuc",
+    "availability": [
+      "available",
+      "available",
+      "available",
+      "unavailable",
+      "unavailable"
+    ],
+    "duration": "4 hours"
+  },
+  {
+    "date": "2023-04-11T21:00",
+    "location": "Miercurea-Ciuc",
+    "availability": [
+      "available",
+      "available",
+      "available",
+      "available",
+      "available"
+    ],
+    "duration": "5 hours"
+  },
+  {
+    "date": "2023-04-16T19:30",
+    "location": "Miercurea-Ciuc",
+    "availability": [
+      "available",
+      "unknown",
+      "available",
+      "unavailable",
+      "unknown"
+    ],
+    "duration": "2 hours"
+  },
+  {
+    "date": "2023-04-15T08:00",
+    "location": "Miercurea-Ciuc",
+    "availability": [
+      "available",
+      "available",
+      "available",
+      "available",
+      "unavailable"
+    ],
+    "duration": "6 hours"
+  },
+  {
+    "date": "2023-03-10T12:00",
+    "location": "Miercurea-Ciuc",
+    "availability": [
+      "available",
+      "available",
+      "unavailable",
+      "available",
+      "unavailable"
+    ],
+    "duration": "8 hours"
+  },
+  {
+    "date": "2023-02-21T15:00",
+    "location": "Miercurea-Ciuc",
+    "availability": [
+      "available",
+      "available",
+      "available",
+      "available",
+      "available"
+    ],
+    "duration": "5 hours"
+  }
+]

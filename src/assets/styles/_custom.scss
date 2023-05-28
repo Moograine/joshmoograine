@@ -1,0 +1,53 @@
+@import 'variables';
+
+:host::ng-deep {
+  .p-dropdown {
+    background-color: $shadow-light;
+    border: none;
+
+    &-panel {
+      background-color: rgba($primary, .95);
+    }
+  }
+
+  .p-contextmenu {
+    .p-menuitem.p-menuitem-active > .p-menuitem-link {
+      background-color: transparent;
+    }
+  }
+
+  .p-calendar {
+    width: 6.5rem;
+
+    .p-inputtext {
+      background-color: $shadow-light;
+      border: none;
+    }
+  }
+
+  .p-datepicker {
+    background-color: rgba($primary, .95);
+
+    .p-datepicker-header {
+      background-color: rgba($primary, .95);
+    }
+  }
+
+  .p-inputtextarea {
+    background-color: $shadow-light;
+    border: none;
+  }
+
+  .p-dialog {
+    border: none;
+
+    &-header {
+      background-color: $primary;
+    }
+
+    &-content {
+      background-color: $primary;
+    }
+  }
+}
+

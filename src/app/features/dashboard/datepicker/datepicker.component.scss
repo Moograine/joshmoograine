@@ -1,0 +1,33 @@
+@import 'src/assets/styles/variables';
+@import 'src/assets/styles/custom';
+
+button {
+  height: 2.65rem;
+}
+
+.calendar {
+  max-height: 85vh;
+  overflow-y: auto;
+
+  .aspect-ratio {
+    aspect-ratio: .85;
+    @media (min-width: 576px) {
+      aspect-ratio: 1.25;
+    }
+  }
+
+  .availability {
+    font-size: calc(.25rem + .5vw);
+    line-height: 0;
+  }
+}
+
+.days {
+  flex: 1 0 14%;
+  color: $white-muddy;
+
+  &:nth-child(n + 5) {
+    color: $yellow;
+  }
+}
+

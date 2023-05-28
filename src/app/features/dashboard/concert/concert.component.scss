@@ -1,0 +1,35 @@
+.concert {
+  max-height: 87.5vh;
+  overflow-y: auto;
+
+  h4 {
+    @media(max-width: 767px) {
+      font-size: calc(.70rem + .5vw);
+    }
+  }
+
+  .participants {
+    padding-top: .1rem;
+    font-size: calc(.5rem + .5vw);
+  }
+
+  .availability {
+    font-size: .6rem;
+  }
+
+  .pi-cog {
+    &:hover {
+      animation: rotate 1s;
+      @keyframes rotate {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}
+
+

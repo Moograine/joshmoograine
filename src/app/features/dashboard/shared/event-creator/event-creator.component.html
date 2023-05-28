@@ -1,0 +1,20 @@
+<div class="p-1 h-30rem w-30rem">
+  <p-dropdown [options]="eventTypes" [(ngModel)]="event"></p-dropdown>
+  <p class="mt-3 mb-1 px-1">Date of the {{event | lowercase}}:</p>
+  <div class="flex absolute">
+    <p-calendar dateFormat="DD, dd MM yy" [(ngModel)]="date"></p-calendar>
+    <p-calendar [timeOnly]="true" [showTime]="true" class="mx-1" [(ngModel)]="hour"></p-calendar>
+  </div>
+
+
+  <p class="mt-7 mb-1 px-1">Note (optional):</p>
+  <textarea pInputTextarea class="w-full h-8rem"></textarea>
+  <div class="mt-5 flex justify-content-between">
+    <div class="mt-2 pt-1">
+      <p-checkbox label="Inform Others" [(ngModel)]="informOthers" [binary]="true"></p-checkbox>
+      <i [pTooltip]="'Send notifications to every other member via email.'" class="pi pi-question-circle text-sm px-2"></i>
+    </div>
+    <button pButton>Create {{event}}</button>
+  </div>
+
+</div>

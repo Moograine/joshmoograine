@@ -1,0 +1,17 @@
+<div class="absolute top-0 right-0">
+  <div class="hidden md:flex mt-5 select-none">
+    <h3 class="m-0">
+      <a class="mx-3 no-underline text-gray-400 hover:text-gray-200 border-left-1 border-white-alpha-10 pl-4" routerLink="/rehearsal">Rehearsal</a>
+    </h3>
+    <h3 class="m-0">
+      <a class="mx-3 no-underline text-gray-400 hover:text-gray-200 border-x-1 border-white-alpha-10 px-4" routerLink="/concert">Concert</a>
+    </h3>
+    <h3 class="m-0">
+      <a class="mx-3 no-underline text-gray-400 hover:text-gray-200 border-right-1 border-white-alpha-10 pr-4" routerLink="/datepicker">Datepicker</a>
+    </h3>
+  </div>
+  <div class="md:hidden mt-3">
+    <p-dropdown class="px-3" [options]="options" [(ngModel)]="selectedOption" (ngModelChange)="navigate()" placeholder="Select a Page"></p-dropdown>
+  </div>
+
+</div>

@@ -1,0 +1,47 @@
+[
+  {
+    "date": "2023-06-01T20:00",
+    "location": "Wembley Stadium, London",
+    "availability": [
+      "available",
+      "available",
+      "available",
+      "available",
+      "available"
+    ],
+    "duration": "5 hours"
+  },
+  {
+    "date": "2023-08-15T18:30",
+    "location": "Madison Square Garden, New York",
+    "availability": [
+      "available",
+      "available",
+      "available",
+      "available",
+      "unavailable"
+    ]
+  },
+  {
+    "date": "2022-06-17T17:00",
+    "location": "Vibe, Târgu Mureș",
+    "availability": [
+      "available",
+      "available",
+      "available",
+      "available",
+      "unavailable"
+    ]
+  },
+  {
+    "date": "2021-09-21T20:00",
+    "location": "Casa de Cultură, Vlăhița",
+    "availability": [
+      "available",
+      "available",
+      "unknown",
+      "available",
+      "available"
+    ]
+  }
+]

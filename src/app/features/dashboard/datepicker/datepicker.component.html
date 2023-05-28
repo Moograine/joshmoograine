@@ -1,0 +1,60 @@
+<div class="h-5rem w-full flex justify-content-between border-bottom-1 border-white-alpha-10">
+  <div class="flex align-items-center scalein">
+    <p-calendar (onSelect)="changeMonth()"
+                [(ngModel)]="selectedMonth"
+                view="month"
+                dateFormat="MM"
+                [minDate]="currentDate"
+                [readonlyInput]="true"></p-calendar>
+    <button pButton (click)="openEventCreator()"
+            class="mx-3 shadow-none bg-blue-800 hover:bg-blue-700 border-none text-white-alpha-60">
+      Create Event
+    </button>
+  </div>
+</div>
+
+<div class="py-2">
+  <div class="flex w-full ">
+    <h4 *ngFor="let day of days" class="days m-0 my-2 text-xs lg:text-base">{{day | slice:0:3}}</h4>
+  </div>
+  <div class="calendar scalein">
+    <div class="flex aspect-ratio flex-wrap select-none">
+      <!-- On desktop, on Right Click, show the option to create an event for this date. On mobile, show it on Hold -->
+      <div
+        *ngFor="let dateItem of dateArray; index as index"
+        [class]="index % 2 ? 'bg-black-alpha-10' : 'bg-black-alpha-20'"
+        #calendarBox
+        (click)="setAvailability(dateItem)"
+        style="flex: 1 0 14%;"
+        class="border-white-alpha-10 border-1 hover:border-white-alpha-40 p-1 lg:p-3">
+        <p-contextMenu
+          [styleClass]="'bg-gray-800 hover:bg-gray-700 p-0'"
+          [target]="calendarBox" (onHide)="openEventCreator()"
+          [model]="contextMenuItem">
+        </p-contextMenu>
+        <div class="h-full flex flex-column justify-content-between">
+          <span class="text-xs lg:text-base" [class.opacity-20]="dateItem.date.getMonth() !== selectedMonth.getMonth()">
+            {{dateItem.date | date :'d'}}
+          </span>
+          <div *ngFor="let availability of dateItem.availability; index as userId">
+            <div
+              *ngIf="availability !== 'unknown'"
+              class="availability"
+              [class]="availability === 'available' ? 'text-green-600' : 'text-red-500'">
+              {{displayUserById(userId, false)}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  [header]="'Create an Event'"
+  [(visible)]="eventCreator"
+  [modal]="true"
+  [dismissableMask]="true"
+  [closeOnEscape]="true">
+  <app-event-creator></app-event-creator>
+</p-dialog>

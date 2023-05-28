@@ -1,0 +1,27 @@
+@import 'node_modules/primeflex/primeflex.css';
+@import 'node_modules/primeflex/primeflex.min.css';
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.consolas {
+  font-family: Consolas, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: .5rem;
+
+  &-track {
+    background: rgba(95, 99, 117, 0.53);
+  }
+
+  &-thumb {
+    background: #59596e;
+
+    &:hover {
+      background: #727386;
+    }
+  }
+}
