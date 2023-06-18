@@ -1,4 +1,4 @@
-export type AvailabilityStatus = 'available' | 'unavailable' | 'unknown';
+import { AvailabilityStatus } from './event.model';
 
 export interface DatepickerModelApi {
   date: Date;

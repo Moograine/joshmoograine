@@ -1,0 +1,81 @@
+@import 'src/assets/styles/custom';
+@import 'node_modules/primeflex/themes/arya-blue';
+
+button {
+  height: 2.65rem;
+}
+
+.event-container {
+  overflow: hidden;
+  @media(min-width: 1200px) {
+    max-height: 87.5vh;
+    overflow-y: auto;
+  }
+
+  h4 {
+    @media(max-width: 480px) {
+      font-size: .9rem
+    }
+    @media(max-width: 767px) {
+      font-size: 1rem;
+    }
+  }
+
+  .participants {
+    padding: 0 .25rem 0 .25rem;
+    font-size: .9rem;
+
+    @media(max-width: 350px) {
+      padding: .1rem 0 0 0;
+      font-size: .6rem;
+    }
+
+    @media(min-width: 375px) {
+      font-size: .9rem;
+    }
+
+    @media(max-width: 480px) {
+      padding: .1rem 0 0 0;
+      &.green {
+        color: var(--green-600);
+      }
+
+      &.red {
+        color: var(--red-500);
+      }
+
+      &.blue {
+        color: var(--blue-300);
+      }
+    }
+  }
+
+  .availability {
+    font-size: .6rem;
+
+    @media(max-width: 480px) {
+      display: none;
+    }
+  }
+
+  .pi-cog {
+    cursor: pointer;
+    @media(max-width: 767px) {
+      cursor: default;
+    }
+
+    &:hover {
+      animation: rotate 1s;
+      @keyframes rotate {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    }
+  }
+}
+
+

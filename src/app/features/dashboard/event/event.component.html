@@ -1,0 +1,105 @@
+<div class="h-5rem w-full flex align-items-center justify-content-between border-bottom-1 border-white-alpha-10">
+  <button pButton (click)="openEventCreatorModal()"
+          class="bg-blue-800 shadow-none hover:bg-blue-700 border-none text-white-alpha-60">Create Event
+  </button>
+</div>
+
+<div class="event-container my-2">
+  <div *ngIf="eventItems?.length else loader">
+    <div *ngFor="let eventItem of eventItems, index as eventId">
+      <div
+        (dblclick)="openEventViewerModal(eventItem)"
+        *ngIf="eventItem"
+        [class]="eventType === 'Rehearsal' ?
+        'bg-bluegray-900 hover:bg-bluegray-800' : 'bg-black-alpha-20 hover:bg-white-alpha-10' "
+        #eventCard
+        class="mx-2 select-none transition-duration-100 scalein border-round
+        p-3 md:p-5 my-3 flex justify-content-between text-white-alpha-60">
+        <div>
+          <p-contextMenu
+            [styleClass]="'bg-gray-800 hover:bg-gray-700 p-0'"
+            [target]="eventCard"
+            [model]="contextMenuItem">
+          </p-contextMenu>
+          <div class="flex pt-1">
+            <i class="pi pi-calendar"></i>
+            <h4 class="m-0 px-2">{{eventItem.date | date : 'EEEE, MMMM d, y, h:mm a'}}</h4>
+          </div>
+          <div class="flex pt-1">
+            <i class="pi pi-home"></i>
+            <h4 class="m-0 px-2">{{eventItem.location}}</h4>
+          </div>
+          <div *ngIf="eventType === 'Rehearsal'" class="flex pt-1">
+            <i class="pi pi-clock"></i>
+            <h4 class="m-0 px-2">{{getDuration(eventItem)}}</h4>
+          </div>
+          <div class="flex pt-1">
+            <i class="pi pi-user mr-2"></i>
+            <div *ngFor="let status of eventItem.availability, index as userId, last as last">
+              <div class="flex mr-2 md:mr-3">
+                <i
+                  [ngClass]="{
+                  'pi-check text-green-600': status === 'available',
+                  'pi-times text-red-500': status === 'unavailable',
+                  'pi-question text-blue-300': status === 'unknown'}"
+                  class="pi availability pt-1 font-bold"></i>
+                <p [ngClass]="{
+                  'green': status === 'available',
+                  'red': status === 'unavailable',
+                  'blue': status === 'unknown'}"
+                   class="flex m-0 px-11 participants md:pt-0 md:text-xs xl:text-sm white-space-nowrap">
+                  {{isPhoneView ? users[userId].nickname : users[userId].name}}
+                  <i class="text-white-alpha-70" *ngIf="!last">,</i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i (click)="openEventCreatorModal(eventItem, eventId)" class="pi pi-cog md:text-2xl flex align-items-center">
+        </i>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loader>
+    <div class="my-3">
+      <div class="scalein border-round p-1 w-full">
+        <p-skeleton styleClass="h-5rem md:h-7rem"></p-skeleton>
+      </div>
+      <div class="scalein border-round p-1 my-3 w-full">
+        <p-skeleton styleClass="h-5rem md:h-7rem"></p-skeleton>
+      </div>
+      <div class="scalein border-round p-1 w-full">
+        <p-skeleton styleClass="h-5rem md:h-7rem"></p-skeleton>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<p-dialog
+  [header]="selectedEventItem ? 'Change event details' : 'Create an Event'"
+  *ngIf="showEditModal"
+  [(visible)]="showEditModal"
+  [resizable]="false"
+  [modal]="true"
+  [dismissableMask]="true"
+  [closeOnEscape]="true">
+  <app-event-creator
+    (closeModal)="closeModal()"
+    [eventItem]="selectedEventItem"
+    [eventId]="eventId"
+    [eventType]="eventType"></app-event-creator>
+</p-dialog>
+
+<p-dialog
+  [header]="eventType"
+  *ngIf="showViewModal"
+  [(visible)]="showViewModal"
+  [resizable]="false"
+  [modal]="true"
+  [dismissableMask]="true"
+  [closeOnEscape]="true">
+  <app-event-viewer
+    [eventItem]="selectedEventItem"
+    [eventType]="eventType"></app-event-viewer>
+</p-dialog>

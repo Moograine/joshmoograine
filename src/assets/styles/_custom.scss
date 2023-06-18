@@ -16,9 +16,13 @@
     }
   }
 
-  .p-calendar {
-    width: 6.5rem;
+  .datepicker-calendar {
+    .p-calendar {
+      width: 6.5rem;
+    }
+  }
 
+  .p-calendar {
     .p-inputtext {
       background-color: $shadow-light;
       border: none;
@@ -33,11 +37,6 @@
     }
   }
 
-  .p-inputtextarea {
-    background-color: $shadow-light;
-    border: none;
-  }
-
   .p-dialog {
     border: none;
 
@@ -47,6 +46,12 @@
 
     &-content {
       background-color: $primary;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .p-dialog {
+      width: 90vw;
     }
   }
 }

@@ -1,21 +1,25 @@
-<div class="login py-7 xl:py-0 bg-gray-900 xl:flex xl:justify-content-evenly align-items-center">
-  <div class="w-full xl:w-auto py-4 xl:p-0 flex justify-content-center">
+<div class="login sm:py-7 xl:py-0 bg-gray-900 xl:flex xl:justify-content-evenly align-items-center">
+  <div class="w-full xl:w-auto mt-3 sn:my-0 py-4 xl:p-0 flex justify-content-center">
     <img src="assets/images/logo.png"/>
   </div>
-  <div class="form-container m-3 flex justify-content-center align-items-center">
-    <form (ngSubmit)="matchUser()" [formGroup]="formGroup" class="mt-5 p-4 sm:p-8 relative">
-      <input formControlName="email" class="mt-7" placeholder="Enter your email"/>
-      <input #password type="password" id="password" formControlName="password" placeholder="Enter your password"/>
-      <i
-        class="pi pi-eye cursor-pointer text-white-alpha-60 hover:text-white-alpha-80 absolute"
-        style="right: 22.5%;margin-bottom: 2rem;"
-        (click)="showPassword(password)"></i>
-      <span [class.opacity-0]="!showError" class="text-orange-700">Incorrect email or password!</span>
+  <div class="form-container sm:m-3 flex justify-content-center align-items-center">
+    <form (ngSubmit)="matchUser()" [formGroup]="formGroup" class="mt-5 p-5 sm:p-8 relative">
+      <span class="p-float-label mt-8 sm:mt-5 w-full">
+        <input pInputText [email]="true" id="email" formControlName="email"/>
+        <label for="email" class="text-s">Enter your email</label>
+      </span>
+      <span class="p-float-label mt-8 w-full">
+      <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="false"></p-password>
+      <label for="password" class="text-s">Enter your password</label>
+      </span>
+      <span [class.opacity-0]="!errorMessage.length" class="text-xs text-red-600 w-full mt-4">{{errorMessage}}</span>
       <button
         type="submit"
         [disabled]="formGroup.invalid"
-        [class]="formGroup.valid ? 'bg-blue-700 hover:bg-blue-800' : 'bg-blue-900'"
-        class="bg-blue-700">LOGIN</button>
+        pButton
+        label="LOGIN"
+        class="p-button-info">
+      </button>
     </form>
   </div>
 </div>

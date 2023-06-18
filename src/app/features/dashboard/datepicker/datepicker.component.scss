@@ -3,11 +3,28 @@
 
 button {
   height: 2.65rem;
+
+  i {
+    display: none;
+  }
+
+  @media(max-width: 350px) {
+    margin: 0 .5rem 0 .5rem;
+    span {
+      display: none;
+    }
+    i {
+      display: block;
+    }
+  }
 }
 
 .calendar {
-  max-height: 85vh;
-  overflow-y: auto;
+  overflow: hidden;
+  @media(min-width: 1200px) {
+    max-height: 87.5vh;
+    overflow-y: auto;
+  }
 
   .aspect-ratio {
     aspect-ratio: .85;
@@ -17,7 +34,7 @@ button {
   }
 
   .availability {
-    font-size: calc(.25rem + .5vw);
+    font-size: calc(.4rem + .75vw);
     line-height: 0;
   }
 }

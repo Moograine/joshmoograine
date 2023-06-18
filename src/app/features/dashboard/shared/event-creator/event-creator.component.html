@@ -1,20 +1,65 @@
-<div class="p-1 h-30rem w-30rem">
-  <p-dropdown [options]="eventTypes" [(ngModel)]="event"></p-dropdown>
-  <p class="mt-3 mb-1 px-1">Date of the {{event | lowercase}}:</p>
-  <div class="flex absolute">
-    <p-calendar dateFormat="DD, dd MM yy" [(ngModel)]="date"></p-calendar>
-    <p-calendar [timeOnly]="true" [showTime]="true" class="mx-1" [(ngModel)]="hour"></p-calendar>
+<div class="p-1 sm:w-30rem">
+  <p-dropdown [options]="eventTypes" [(ngModel)]="eventType"></p-dropdown>
+  <p class="mt-3 mb-1 px-1">Date of the {{eventType | lowercase}}:</p>
+  <div class="relative">
+    <div class="flex calendar absolute">
+      <p-calendar [dateFormat]="isPhoneView ? 'D, d MM' : 'DD, dd MM yy'" class="mr-1 mb-1" [(ngModel)]="eventDate">
+      </p-calendar>
+      <p-calendar [timeOnly]="true" [showTime]="true" [(ngModel)]="hour"></p-calendar>
+    </div>
   </div>
-
-
-  <p class="mt-7 mb-1 px-1">Note (optional):</p>
-  <textarea pInputTextarea class="w-full h-8rem"></textarea>
-  <div class="mt-5 flex justify-content-between">
+  <p class="location mb-1 px-1">Location:</p>
+  <input pInputText class="w-full" [(ngModel)]="eventLocation"/>
+  <div *ngIf="eventType === 'Rehearsal'">
+    <p class="mb-1 px-1">Duration</p>
+    <p-dropdown [options]="durationOptions" class="w-full" [(ngModel)]="duration"></p-dropdown>
+  </div>
+  <div *ngIf="editMode">
+    <p class="mb-1 px-1">Availability:</p>
+    <p-dropdown [options]="availabilityOptions.items" [(ngModel)]="currentUserAvailability"></p-dropdown>
+  </div>
+  <p class="mb-1 px-1">Note (optional):</p>
+  <textarea pInputTextarea class="w-full h-8rem" [(ngModel)]="note"></textarea>
+  <div class="sm:mt-5 flex flex-column sm:flex-row justify-content-between">
     <div class="mt-2 pt-1">
       <p-checkbox label="Inform Others" [(ngModel)]="informOthers" [binary]="true"></p-checkbox>
-      <i [pTooltip]="'Send notifications to every other member via email.'" class="pi pi-question-circle text-sm px-2"></i>
+      <i #tooltip
+         [tooltipEvent]="'focus'"
+         [tabindex]="0"
+         (click)="showTooltip($event, tooltip)"
+         [pTooltip]="'Send notifications to every other member via email.'" class="pi pi-question-circle text-sm px-2">
+      </i>
     </div>
-    <button pButton>Create {{event}}</button>
+    <div class="flex justify-content-end sm:mt-0">
+      <button *ngIf="editMode"
+              (click)="openConfirmDialog()"
+              class="submit bg-red-800 hover:bg-red-700 border-red-700 mx-2" pButton>
+        <i class="pi pi-trash text-white-alpha-90"></i>
+      </button>
+      <button (click)="createEvent()" class="submit" pButton>{{editMode ? 'Save' : 'Create'}} {{eventType}}</button>
+    </div>
   </div>
-
 </div>
+
+<p-dialog [modal]="true"
+          [dismissableMask]="true"
+          [resizable]="false"
+          [autoZIndex]="false"
+          [closeOnEscape]="true"
+          [showHeader]="false"
+          class="confirm"
+          [(visible)]="showConfirmDialog">
+  <h3 class="text-center m-5">Are you sure?</h3>
+  <div class="flex justify-content-center">
+    <button *ngIf="editMode"
+            (click)="closeConfirmDialog()"
+            class="bg-red-800 hover:bg-red-700 border-red-700 mx-2" pButton>
+      <i class="pi pi-times text-white-alpha-90"></i>
+    </button>
+    <button *ngIf="editMode"
+            (click)="deleteEvent()"
+            class="bg-green-800 hover:bg-green-700 border-green-700 mx-2" pButton>
+      <i class="pi pi-check text-white-alpha-90"></i>
+    </button>
+  </div>
+</p-dialog>

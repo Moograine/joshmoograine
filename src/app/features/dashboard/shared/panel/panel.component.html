@@ -4,8 +4,9 @@
   </div>
 
   <div class="px-4 pt-8 text-white-alpha-80">
-    <h3 class=" consolas typewriter text-center">Welcome, {{userService.currentUser.nickname}}!</h3>
-
+    <h3 class=" consolas typewriter text-center">
+      Welcome{{userService.currentUser.nickname ? ', ' + userService.currentUser.nickname : ''}}!
+    </h3>
     <div class="hover:text-white-alpha-90 slide-in">
       <div class="flex cursor-pointer" (click)="openMyActivity()">
         <i class="pi pi-list mr-1 text-xs pt-1"></i>
@@ -29,9 +30,10 @@
 
 <p-dialog [modal]="true"
           [dismissableMask]="true"
+          [resizable]="false"
           [closeOnEscape]="true"
           [(visible)]="openSettingsModal">
-  <div class="w-20rem h-11rem text-white-alpha-80">
+  <div style="width: 80vw" class="sm:w-20rem h-11rem text-white-alpha-80">
     <div class="flex justify-content-center">
       <i class="pi pi-wrench text-8xl"></i>
     </div>
@@ -41,9 +43,10 @@
 
 <p-dialog [modal]="true"
           [dismissableMask]="true"
+          [resizable]="false"
           [closeOnEscape]="true"
           [(visible)]="openMyActivityModal">
-  <div class="w-20rem h-11rem text-white-alpha-80">
+  <div style="width: 80vw" class="sm:w-20rem h-11rem text-white-alpha-80">
     <div class="flex justify-content-center">
       <i class="pi pi-wrench text-8xl"></i>
     </div>

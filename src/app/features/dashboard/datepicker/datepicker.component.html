@@ -2,13 +2,15 @@
   <div class="flex align-items-center scalein">
     <p-calendar (onSelect)="changeMonth()"
                 [(ngModel)]="selectedMonth"
+                class="datepicker-calendar"
                 view="month"
                 dateFormat="MM"
                 [minDate]="currentDate"
                 [readonlyInput]="true"></p-calendar>
     <button pButton (click)="openEventCreator()"
-            class="mx-3 shadow-none bg-blue-800 hover:bg-blue-700 border-none text-white-alpha-60">
-      Create Event
+            class="shadow-none mx-2 bg-blue-800 hover:bg-blue-700 border-none text-white-alpha-60">
+      <span>Create Event</span>
+      <i class="pi pi-plus font-bold"></i>
     </button>
   </div>
 </div>
@@ -39,7 +41,7 @@
           <div *ngFor="let availability of dateItem.availability; index as userId">
             <div
               *ngIf="availability !== 'unknown'"
-              class="availability"
+              class="availability consolas"
               [class]="availability === 'available' ? 'text-green-600' : 'text-red-500'">
               {{displayUserById(userId, false)}}
             </div>
@@ -52,7 +54,9 @@
 
 <p-dialog
   [header]="'Create an Event'"
+  *ngIf="eventCreator"
   [(visible)]="eventCreator"
+  [resizable]="false"
   [modal]="true"
   [dismissableMask]="true"
   [closeOnEscape]="true">

@@ -23,11 +23,19 @@ export class EventService {
     return <Observable<RehearsalModel[]>>this.http.get(`${Environment.defaultApi}/rehearsal.json`);
   }
 
-  get setConcert(): Observable<ConcertModel[]> {
-    return <Observable<ConcertModel[]>>this.http.post(`${Environment.defaultApi}/concert.json`, {});
+  setConcert(id: string, payload: ConcertModel): Observable<ConcertModel> {
+    return <Observable<ConcertModel>>this.http.put(`${Environment.defaultApi}/concert/${id}.json`, payload);
   }
 
-  get setRehearsal(): Observable<RehearsalModel[]> {
-    return <Observable<RehearsalModel[]>>this.http.post(`${Environment.defaultApi}/rehearsal.json`, {});
+  setRehearsal(id: string, payload: RehearsalModel): Observable<RehearsalModel> {
+    return <Observable<RehearsalModel>>this.http.put(`${Environment.defaultApi}/rehearsal/${id}.json`, payload);
+  }
+
+  deleteConcert(id: number): Observable<ConcertModel> {
+    return <Observable<ConcertModel>>this.http.delete(`${Environment.defaultApi}/concert/${id}.json`);
+  }
+
+  deleteRehearsal(id: number): Observable<RehearsalModel> {
+    return <Observable<RehearsalModel>>this.http.delete(`${Environment.defaultApi}/rehearsal/${id}.json`);
   }
 }

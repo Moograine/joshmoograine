@@ -1,9 +1,12 @@
-import { AvailabilityStatus } from './datepicker.model';
+export type EventModelType = 'Rehearsal' | 'Concert';
+
+export type AvailabilityStatus = 'available' | 'unavailable' | 'unknown';
 
 export interface ConcertModel {
   date: Date;
   location: string;
   availability: AvailabilityStatus[];
+  note: string;
 }
 
 export interface RehearsalModel {
@@ -11,32 +14,36 @@ export interface RehearsalModel {
   location: string;
   duration: string;
   availability: AvailabilityStatus[];
+  note: string;
 }
 
-// TODO not used
 export class Rehearsal {
-  date = null;
+  date = new Date;
   location = '';
   duration = '';
   availability: AvailabilityStatus[] = [];
+  note: string;
 
-  constructor(date: Date, location: string, duration: string, availability: AvailabilityStatus[]) {
-    this.date = null;
-    this.location = location;
-    this.duration = duration;
-    this.availability = availability;
+  constructor(date?: Date, location?: string, duration?: string, availability?: AvailabilityStatus[], note?: string) {
+    this.date = date || new Date;
+    this.location = location || '';
+    this.duration = duration || '';
+    this.availability = availability || [];
+    this.note = note || '';
   }
 }
 
 // TODO not used
 export class Concert {
-  date = null;
+  date = new Date;
   location = '';
   availability: AvailabilityStatus[] = [];
+  note: string;
 
-  constructor(date: Date, location: string, availability: AvailabilityStatus[]) {
-    this.date = null;
-    this.location = location;
-    this.availability = availability;
+  constructor(date?: Date, location?: string, availability?: AvailabilityStatus[], note?: string) {
+    this.date = date || new Date;
+    this.location = location || '';
+    this.availability = availability || [];
+    this.note = note || '';
   }
 }

@@ -19,8 +19,9 @@ export class DateService {
     return <Observable<object>>this.http.get(`${Environment.defaultApi}/datepicker.json`);
   }
 
-  setDatepickerAvailability(id: string, body: boolean[]): Observable<AvailabilityListModel[]> {
-    return <Observable<AvailabilityListModel[]>>this.http.put(`${Environment.defaultApi}/datepicker/${id}.json`, body);
+  setDatepickerAvailability(id: string, payload: boolean[]): Observable<AvailabilityListModel[]> {
+    return <Observable<AvailabilityListModel[]>>
+      this.http.put(`${Environment.defaultApi}/datepicker/${id}.json`, payload);
   }
 
   deleteDate(id: string): Observable<AvailabilityListModel> {

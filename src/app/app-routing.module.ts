@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './onboarding/login/login.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { RehearsalComponent } from './features/dashboard/rehearsal/rehearsal.component';
 import { DatepickerComponent } from './features/dashboard/datepicker/datepicker.component';
-import { ConcertComponent } from './features/dashboard/concert/concert.component';
 import { redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+import { EventComponent } from './features/dashboard/event/event.component';
+import { RepertoireComponent } from './features/dashboard/repertoire/repertoire.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectAuthorized = () => redirectLoggedInTo(['']);
@@ -28,12 +28,16 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin },
     children: [
       {
+        path: 'repertoire',
+        component: RepertoireComponent
+      },
+      {
         path: 'rehearsal',
-        component: RehearsalComponent
+        component: EventComponent
       },
       {
         path: 'concert',
-        component: ConcertComponent
+        component: EventComponent
       },
       {
         path: 'datepicker',
