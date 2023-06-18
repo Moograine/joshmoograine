@@ -1,48 +1,94 @@
 @import '../../../assets/styles/variables';
 
-.login {
-  background-color: $primary;
-  width: 100%;
-  height: 100vh;
+:host::ng-deep {
+  .login {
+    background-color: $primary;
+    width: 100%;
+    height: 100vh;
 
-  img {
-    width: 85vw;
-    @media (min-width: 1200px) {
-      width: 50vw;
-    }
-  }
-
-  .form-container {
-
-    form {
-      background-color: rgba($white, .1);
-      box-shadow: .15rem .15rem .75rem $shadow;
-      border-radius: .25rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      input {
-        min-width: 10rem;
-        max-width: 25rem;
-        width: 100%;
-        margin: 2rem;
-        height: 2rem;
-        background-color: transparent;
-        outline: none;
-        border: none;
-        border-bottom: .1rem solid $green;
-        color: $white-muddy;
+    img {
+      width: 85vw;
+      @media (min-width: 1200px) {
+        width: 50vw;
       }
+    }
 
-      button {
-        width: 50%;
-        margin: 3rem;
-        padding: 1rem;
+    .form-container {
+      form {
+        background-color: rgba($white, .1);
+        box-shadow: .15rem .15rem .75rem $shadow;
         border-radius: .25rem;
-        border: 1px solid $primary;
-        transition: background-color .25s;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          width: 50%;
+          margin: 3rem;
+          transition: opacity .5s;
+        }
+
+        .p-inputtext {
+          padding: .25rem;
+          min-width: 10rem;
+          max-width: 25rem;
+          width: 100%;
+          height: 2rem;
+          background-color: transparent;
+          outline: none;
+          border: none;
+          border-bottom: .1rem solid $light-blue;
+          color: $white-muddy;
+          border-radius: 0;
+
+          &:enabled:focus {
+            box-shadow: none;
+            outline: 0;
+          }
+
+          &.ng-dirty.ng-invalid {
+            border-color: $red;
+          }
+
+          &:hover {
+            border-color: $white-muddy;
+          }
+        }
+
+        p-password.ng-invalid.ng-dirty > .p-password > .p-inputtext {
+          border-color: $red;
+        }
+
+        .p-float-label {
+          & > label {
+            left: .25rem;
+            @media(max-width: 576px) {
+              font-size: .9rem;
+            }
+          }
+
+          & > .ng-invalid.ng-dirty + label {
+            color: $red;
+          }
+        }
+
+        .p-input-icon-right {
+          & > .p-inputtext {
+            padding-right: 2.5rem;
+          }
+
+          & > i:last-of-type {
+            right: .4rem;
+          }
+
+          i {
+            transition: color .25s;
+            &:hover {
+              color: $white;
+            }
+          }
+        }
       }
     }
   }

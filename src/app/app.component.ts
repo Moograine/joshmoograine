@@ -6,6 +6,8 @@ import { DateService } from '../assets/services/date.service';
 import { HttpClient } from '@angular/common/http';
 import { EventService } from '../assets/services/event.service';
 import { ConcertModel, RehearsalModel } from '../assets/models/event.model';
+import { RepertoireService } from '../assets/services/repertoire.service';
+import { SetlistModel, SongModel } from '../assets/models/repertoire.model';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService,
               private dateService: DateService,
               private http: HttpClient,
+              private repertoireService: RepertoireService,
               private eventService: EventService) {
   }
 
@@ -26,6 +29,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.getAllUsers();
     this.getAvailability();
     this.initializeEvents();
+    this.initializeSetlists();
+    this.initializeSongs();
   }
 
   getAllUsers(): void {
@@ -33,6 +38,18 @@ export class AppComponent implements OnInit, OnDestroy {
       .subscribe((users: UserModel[]): void => {
         this.userService.initializeUsers(users);
       })
+  }
+
+  initializeSetlists(): void {
+    this.repertoireService.setlists.pipe(take(1)).subscribe((setlistData: SetlistModel[]): void => {
+      this.repertoireService.setlistCollection = setlistData;
+    })
+  }
+
+  initializeSongs(): void {
+    this.repertoireService.songs.pipe(take(1)).subscribe((songData: SongModel[]): void => {
+      this.repertoireService.songCollection = songData;
+    })
   }
 
   initializeEvents(): void {

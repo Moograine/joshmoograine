@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
 import { UserService } from '../../../../assets/services/user.service';
 import {
-  AvailabilityListModel,
-  AvailabilityStatus,
   Datepicker,
   DatepickerModel
 } from '../../../../assets/models/datepicker.model';
 import { DateService } from '../../../../assets/services/date.service';
+import { AvailabilityStatus } from '../../../../assets/models/event.model';
 
 @Component({
   selector: 'app-datepicker',

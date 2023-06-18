@@ -1,0 +1,17 @@
+<div class="p-1 sm:w-30rem">
+  <div>
+    <p class="mt-3 mb-1 px-1">Date of the {{eventType | lowercase}}:</p>
+    <p class="p-inputtext select-none opacity-50">{{eventItem?.date | date : 'EEEE, MMMM d, y, h:mm a'}}</p>
+  </div>
+  <p class="location mb-1 px-1">Location:</p>
+  <p class="w-full p-inputtext select-none opacity-50">{{eventItem?.location}}</p>
+  <div *ngIf="eventType === 'Rehearsal'">
+    <p class="mb-1 px-1">Duration</p>
+    <p class="p-inputtext select-none opacity-50">{{getDuration(eventItem)}}</p>
+  </div>
+  <div *ngIf="eventItem?.note?.length">
+    <p class="mb-1 px-1">Note:</p>
+    <p class="w-full p-inputtext select-none opacity-50">{{eventItem?.note}}</p>
+  </div>
+
+</div>

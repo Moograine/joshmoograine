@@ -1,9 +1,57 @@
+@import 'src/assets/styles/variables';
+
 :host::ng-deep {
-  .p-calendar {
-    width: 15rem;
+  .confirm .p-dialog .p-dialog-content {
+    padding-right: 1.5rem;
+    border-radius: 1rem;
   }
 
-  .p-calendar-timeonly {
-    width: 4rem;
+  .p-dialog .p-dialog-content {
+    padding-right: 4rem;
+  }
+
+  .p-inputtext:not(.p-dropdown-label) {
+    background-color: $shadow-light;
+
+    &.p-inputtextarea {
+      background-color: $shadow-light;
+      resize: none;
+      border: none;
+    }
+  }
+
+  .calendar {
+    .p-calendar {
+      width: 10.25rem;
+      @media (min-width: 576px) {
+        width: 15rem;
+      }
+    }
+
+    .p-calendar-timeonly {
+      width: 4rem;
+    }
+  }
+
+  .location {
+    margin-top: 4rem;
+  }
+
+  .submit {
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 350px) {
+    .p-dialog .p-dialog-content {
+      padding-right: 0;
+    }
+
+    .calendar {
+      flex-direction: column;
+    }
+
+    .location {
+      margin-top: 7rem;
+    }
   }
 }
